@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Keep all the previous styles -->
+    <style>
+
+:root {
+  --primary-color: #2A2A72;
+  --secondary-color: #009FFD;
+  --accent-color: #FFA400;
+  --light-bg: #f3f4f6;
+  --dark-text: #1f2937;
+  --glass-bg: rgba(255, 255, 255, 0.15);
+  --border-glow: rgba(255, 255, 255, 0.2);
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to right, #e0eafc, #cfdef3);
+  margin: 0;
+  padding: 0;
+  color: var(--dark-text);
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 2rem;
+}
+
+/* Section Title */
+.section-title {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: var(--primary-color);
+  position: relative;
+  animation: fadeInUp 1s ease;
+}
+
+.section-title span {
+  color: var(--secondary-color);
+  font-weight: 700;
+}
+
+/* Glass Header Cards */
+.category-header {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  border-radius: 20px;
+  margin: 2rem 0;
+  backdrop-filter: blur(8px);
+  background: var(--glass-bg);
+  border: 1px solid var(--border-glow);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.category-header:hover {
+  transform: scale(1.03);
+}
+
+.yoga-header {
+  background: linear-gradient(to right, #d9afd9, #97d9e1);
+}
+
+.fitness-header {
+  background: linear-gradient(to right, #ff9a9e, #fad0c4);
+}
+
+.category-icon i {
+  font-size: 2.2rem;
+  color: white;
+  padding: 1rem;
+  background: rgba(255,255,255,0.25);
+  border-radius: 50%;
+}
+
+.category-title {
+  margin: 0;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+/* Video Grid */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+/* Card */
+.video-card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeInUp 1s ease;
+}
+
+.video-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+}
+
+.video-thumbnail {
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+}
+
+.video-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.video-card:hover .video-thumbnail img {
+  transform: scale(1.05);
+}
+
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.play-button i {
+  color: var(--primary-color);
+  font-size: 1.5rem;
+}
+
+.video-card:hover .play-button {
+  background: var(--accent-color);
+}
+
+.video-card:hover .play-button i {
+  color: white;
+}
+
+/* Card Content */
+.card-content {
+  padding: 1.5rem;
+}
+
+.card-content h4 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary-color);
+}
+
+.card-content p {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.meta-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  margin-top: 1rem;
+}
+
+.difficulty {
+  padding: 0.35rem 0.8rem;
+  border-radius: 50px;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.difficulty.beginner {
+  background-color: #e0f7ec;
+  color: #2ecc71;
+}
+
+.difficulty.advanced {
+  background-color: #ffe4e1;
+  color: #e74c3c;
+}
+
+/* Modal Styling */
+.video-modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 20px;
+  padding: 1rem;
+  width: 90%;
+  max-width: 800px;
+  position: relative;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+}
+
+#video-frame {
+  width: 100%;
+  height: 400px;
+  border: none;
+  border-radius: 15px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 2rem;
+  color: #333;
+  cursor: pointer;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .section-title {
+    font-size: 2rem;
+  }
+  .category-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  .video-modal iframe {
+    height: 250px;
+  }
+}
+</style>
+
+</head>
+<body>
+    <section class="reference-section">
+        <div class="animated-bg"></div>
+        <div class="container">
+            <h2 class="section-title">🌈 Wellness <span>Video Hub</span></h2>
+            
+            <!-- Yoga Section -->
+            <div class="category-section">
+                <div class="category-header yoga-header">
+                    <div class="category-icon">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <h3 class="category-title">Yoga & Mindfulness</h3>
+                </div>
+                <div class="video-grid">
+                    <div class="video-card" data-video-id="IYSkQLXbtHE">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/IYSkQLXbtHE/maxresdefault.jpg" alt="Yoga Thumbnail">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h4>Sunrise Vinyasa Flow</h4>
+                            <p>Awaken your body with this energizing morning sequence</p>
+                            <div class="meta-info">
+                                <span><i class="fas fa-clock"></i> 25 min</span>
+                                <span class="difficulty beginner">Beginner</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fitness Section -->
+            <div class="category-section">
+                <div class="category-header fitness-header">
+                    <div class="category-icon">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <h3 class="category-title">Fitness & Movement</h3>
+                </div>
+                <div class="video-grid">
+                    <div class="video-card" data-video-id="IT94xC35u6k">
+                        <div class="video-thumbnail">
+                            <img src="https://img.youtube.com/vi/IT94xC35u6k/maxresdefault.jpg" alt="Workout Thumbnail">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h4>Full Body Burn HIIT</h4>
+                            <p>High-intensity interval training for maximum results</p>
+                            <div class="meta-info">
+                                <span><i class="fas fa-clock"></i> 30 min</span>
+                                <span class="difficulty advanced">Advanced</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Modal -->
+    <div class="video-modal" id="videoModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeVideo()">&times;</span>
+            <iframe id="video-frame" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.video-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const videoId = this.dataset.videoId;
+                openVideo(videoId);
+            });
+        });
+
+        function openVideo(videoId) {
+            const modal = document.getElementById('videoModal');
+            const iframe = document.getElementById('video-frame');
+            const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+            
+            iframe.src = embedUrl;
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeVideo() {
+            const modal = document.getElementById('videoModal');
+            const iframe = document.getElementById('video-frame');
+            
+            iframe.src = '';
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('videoModal');
+            if (event.target === modal) {
+                closeVideo();
+            }
+        }
+    </script>
+</body>
+</html>

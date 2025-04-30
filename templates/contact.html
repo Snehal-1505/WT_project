@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .contact-section {
+    background: #1c1c1c;
+    padding: 80px 20px;
+    color: white;
+    text-align: center;
+}
+
+.contact-container {
+    max-width: 900px;
+    margin: auto;
+    padding: 40px;
+    background: linear-gradient(135deg, #ff416c, #ff4b2b);
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.contact-container h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.contact-info p {
+    font-size: 1.1rem;
+    margin: 10px 0;
+}
+
+.social-icons {
+    margin: 20px 0;
+}
+
+.social-icons a {
+    margin: 0 10px;
+    color: white;
+    font-size: 1.8rem;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    color: #222;
+    background: white;
+    padding: 10px;
+    border-radius: 50%;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    margin: 10px 0;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+}
+
+.contact-form button {
+    margin-top: 15px;
+    padding: 12px 20px;
+    background-color: white;
+    color: #ff4b2b;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.contact-form button:hover {
+    background-color: #ff416c;
+    color: white;
+}
+
+    </style>
+</head>
+<body>
+    <section class="contact-section">
+        <div class="contact-container">
+            <h2>Contact Us</h2>
+            <p>We're here to help you on your fitness journey. Reach out anytime!</p>
+    
+            <div class="contact-info">
+                <p><strong>Email:</strong> support@aifitnesstrainer.com</p>
+                <p><strong>Phone:</strong> +91 98765 43210</p>
+                <p><strong>Location:</strong> Pune, Maharashtra, India</p>
+            </div>
+    
+            <div class="social-icons">
+                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+            </div>
+    
+            <!-- Optional contact form -->
+            <form class="contact-form">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea rows="5" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+    
+</body>
+</html>

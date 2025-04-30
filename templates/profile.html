@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Welcome User Profile</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #e74c3c;
+      --secondary: #ff7675;
+      --card-bg: #ffeaea;
+      --body-bg: linear-gradient(to right top, #c0392b, #ff6b6b);
+      --text-dark: #2d3436;
+      --text-light: white;
+    }
+
+    body {
+      background: var(--body-bg);
+      font-family: 'Outfit', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .profile-card {
+      background: var(--card-bg);
+      border-radius: 1.5rem;
+      padding: 2.5rem;
+      max-width: 700px;
+      width: 100%;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      animation: fadeIn 0.8s ease-out;
+      transition: transform 0.3s ease;
+    }
+
+    .profile-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .profile-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .welcome-text {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .info-section {
+      margin-bottom: 2rem;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      border-radius: 1rem;
+      background: rgba(231, 76, 60, 0.1);
+      margin-bottom: 1rem;
+      color: var(--text-dark);
+    }
+
+    .info-icon {
+      width: 45px;
+      height: 45px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .social-link {
+      width: 45px;
+      height: 45px;
+      background: rgba(231, 76, 60, 0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      transition: background 0.3s ease, transform 0.3s ease;
+      font-size: 1.2rem;
+    }
+
+    .social-link:hover {
+      background: var(--primary);
+      color: white;
+      transform: scale(1.1);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @media screen and (max-width: 576px) {
+      .welcome-text {
+        font-size: 1.8rem;
+      }
+
+      .profile-card {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="profile-card">
+    <div class="profile-header">
+      <div class="welcome-text">Welcome, {{ user.name }}!</div>
+    </div>
+
+    <div class="info-section">
+      <div class="info-item">
+        <div class="info-icon"><i class="bi bi-envelope"></i></div>
+        <div>{{ user.email }}</div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon"><i class="bi bi-geo-alt"></i></div>
+        <div>{{ user.address }}</div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon"><i class="bi bi-person"></i></div>
+        <div>{{ user.gender }}</div>
+      </div>
+    </div>
+
+    <div class="social-links">
+      <a href="#" class="social-link"><i class="bi bi-instagram"></i></a>
+      <a href="#" class="social-link"><i class="bi bi-github"></i></a>
+      <a href="#" class="social-link"><i class="bi bi-linkedin"></i></a>
+      <a href="#" class="social-link"><i class="bi bi-twitter"></i></a>
+    </div>
+  </div>
+</body>
+</html>
