@@ -60,6 +60,8 @@ def speak_feedback(message):
 
 speech_queue = queue.Queue()
 engine = pyttsx3.init()
+speak_lock = threading.Lock()  # Global lock
+
 
 def speech_worker():
     while True:
@@ -73,8 +75,10 @@ def speech_worker():
 speech_thread = threading.Thread(target=speech_worker, daemon=True)
 speech_thread.start()
 
-def speak(text):
-        speech_queue.put(text)
+def _speak(text):
+    with speak_lock:  # Ensure only one thread enters here at a time
+        engine.say(text)
+        engine.runAndWait()
 
     
 def _speak(message):
