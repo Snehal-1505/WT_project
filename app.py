@@ -28,7 +28,8 @@ print(secrets.token_hex(16))
 atexit.register(lambda: camera.release())
 
 engine = pyttsx3.init()
-speech_queue = Queue()
+speech_queue = queue.Queue()
+
 
 engine.setProperty('rate', 145)    # slower speech
 engine.setProperty('volume', 1.0)  # max volume
@@ -73,8 +74,9 @@ speech_thread = threading.Thread(target=speech_worker, daemon=True)
 speech_thread.start()
 
 def speak(text):
-    speech_queue.put(text)
+        speech_queue.put(text)
 
+    
 def _speak(message):
     engine.say(message)
     engine.runAndWait()

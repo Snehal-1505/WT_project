@@ -139,61 +139,35 @@
             transform: rotate(-45deg) translate(5px, -5px);
         }
     }
+    .hero-section {
+    padding: 100px 20px;
+    color: white;
+    background: url("{{ url_for('static', filename='images/image.png') }}") no-repeat center center;
+    background-size: cover;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6); /* dark overlay for readability */
+    z-index: -1;
+}
+
+.hero-container {
+    max-width: 900px;
+    margin: auto;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
     
-    /* Hero Section */
-    .hero {
-        text-align: center;
-        padding: 100px 20px;
-        background: linear-gradient(45deg, #ff416c, #ff4b2b);
-        color: white;
-    }
-    
-    .hero h1 {
-        font-size: 2.5rem;
-        margin-bottom: 10px;
-    }
-    
-    .hero p {
-        font-size: 1.2rem;
-        opacity: 0.9;
-    }
-    
-    .search-container {
-        display: flex;
-        justify-content: center;
-        margin-top: 20px;
-    }
-    
-    .search-box {
-        display: flex;
-        background: white;
-        border-radius: 25px;
-        padding: 10px;
-        width: 50%;
-        max-width: 500px;
-    }
-    
-    .search-box input {
-        border: none;
-        outline: none;
-        padding: 10px;
-        flex: 1;
-        font-size: 1rem;
-    }
-    
-    .search-box button {
-        background: #ff416c;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 25px;
-        cursor: pointer;
-        transition: 0.3s;
-    }
-    
-    .search-box button:hover {
-        background: #ff4b2b;
-    }
     
     /* Footer Styling */
     .footer {
@@ -309,6 +283,78 @@
         transform: scale(1.05);
         box-shadow: 0 15px 25px rgba(0, 114, 255, 0.6);
     }
+
+    .exercise-section {
+        background: #121212;
+        padding: 60px 20px;
+        color: #fff;
+        text-align: center;
+    }
+    
+    .exercise-container {
+        max-width: 1100px;
+        margin: auto;
+    }
+    
+    .exercise-container h2 {
+        font-size: 2.4rem;
+        color: #ff4b2b;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    
+    .exercise-container p {
+        font-size: 1.1rem;
+        margin-bottom: 40px;
+        color: #ddd;
+    }
+    
+    .exercise-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        margin-bottom: 40px;
+    }
+    
+    .exercise-card {
+        background: #1f1f1f;
+        border: 2px solid transparent;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(255, 75, 43, 0.15);
+        transition: all 0.4s ease;
+        text-align: left;
+    }
+    
+    .exercise-card h3 {
+        color: #ff416c;
+        margin-bottom: 10px;
+        font-size: 1.2rem;
+    }
+    
+    .exercise-card p {
+        font-size: 0.95rem;
+        color: #eee;
+        line-height: 1.5;
+    }
+    
+    .exercise-card:hover {
+        transform: translateY(-6px);
+        border-color: #ff416c;
+        box-shadow: 0 0 20px rgba(255, 65, 108, 0.3);
+    }
+    
+    .highlight-message p {
+        background: linear-gradient(90deg, #ff416c, #ff4b2b);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        font-weight: bold;
+        font-size: 1rem;
+        box-shadow: 0 0 15px rgba(255, 75, 43, 0.3);
+    }
+    
 </style>
 
 </head>
@@ -333,17 +379,65 @@
             <div class="line3"></div>
         </div>
     </nav>
+    <section class="hero-section">
+        <div class="hero-container">
+            <h1>Welcome to the AI Fitness Trainer</h1>
+            <p>Your smart workout companion for real-time posture correction and voice feedback.</p>
+            <a href="{{ url_for('live_exercise') }}" class="start-exercise-btn">
+                <span>💪 Start Live Exercise</span>
+            </a>
+        </div>
+    </section>
+    
 
-    <!-- Hero Section -->
-<section class="hero text-center py-5 bg-light">
-    <div class="container">
-        <h1 class="display-4 mb-4">Welcome to the AI Fitness Trainer</h1>
-        <p class="lead mb-4">Your smart workout companion for real-time posture correction and voice feedback.</p>
-        <a href="{{ url_for('live_exercise') }}" class="start-exercise-btn">
-            <span>💪 Start Live Exercise</span>
-        </a>
+<!-- Enhanced Exercise Info Section -->
+<section class="exercise-section">
+    <div class="exercise-container">
+        <h2>🔥 AI-Powered Exercise Guidance</h2>
+        <p>
+            Unlock your fitness potential with real-time posture correction, voice feedback, and intelligent tracking. Our trainer supports a variety of core exercises designed to improve strength, endurance, flexibility, and cardiovascular health.
+        </p>
+
+        <div class="exercise-grid">
+            <div class="exercise-card">
+                <h3>🏋️‍♀️ Squats</h3>
+                <p><strong>Target:</strong> Legs, Glutes, Core<br>
+                   <strong>Benefit:</strong> Builds lower body strength and boosts balance.</p>
+            </div>
+            <div class="exercise-card">
+                <h3>💪 Push-Ups</h3>
+                <p><strong>Target:</strong> Chest, Arms, Shoulders<br>
+                   <strong>Benefit:</strong> Increases upper body strength and core stability.</p>
+            </div>
+            <div class="exercise-card">
+                <h3>🧘 Planks</h3>
+                <p><strong>Target:</strong> Core, Back<br>
+                   <strong>Benefit:</strong> Improves posture and strengthens deep core muscles.</p>
+            </div>
+            <div class="exercise-card">
+                <h3>🚶 Lunges</h3>
+                <p><strong>Target:</strong> Quads, Hamstrings, Glutes<br>
+                   <strong>Benefit:</strong> Improves mobility, stability, and joint health.</p>
+            </div>
+            <div class="exercise-card">
+                <h3>🏃 Jumping Jacks</h3>
+                <p><strong>Target:</strong> Full body cardio<br>
+                   <strong>Benefit:</strong> Increases heart rate and warms up muscles fast.</p>
+            </div>
+            <div class="exercise-card">
+                <h3>🤸 Arm Circles</h3>
+                <p><strong>Target:</strong> Shoulders, Arms<br>
+                   <strong>Benefit:</strong> Great warm-up for upper body workouts.</p>
+            </div>
+        </div>
+
+        <div class="highlight-message">
+            <p>💡 <em>Each workout is tracked with intelligent feedback using your webcam and posture analysis powered by AI. Train safer, smarter, and stronger!</em></p>
+        </div>
     </div>
 </section>
+
+
 
     <!-- Footer -->
     <div class="footer">
