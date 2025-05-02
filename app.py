@@ -62,8 +62,7 @@ speech_queue = queue.Queue()
 engine = pyttsx3.init()
 speak_lock = threading.Lock()  # Global lock
 
-
-def speech_worker():
+def _speak_loop():
     while True:
         text = speech_queue.get()
         if text is None:
@@ -72,13 +71,11 @@ def speech_worker():
         engine.runAndWait()
         speech_queue.task_done()
 
-speech_thread = threading.Thread(target=speech_worker, daemon=True)
-speech_thread.start()
+# Start the speaking thread
+threading.Thread(target=_speak_loop, daemon=True).start()
 
-def _speak(text):
-    with speak_lock:  # Ensure only one thread enters here at a time
-        engine.say(text)
-        engine.runAndWait()
+def speak(text):
+    speech_queue.put(text)
 
     
 def _speak(message):

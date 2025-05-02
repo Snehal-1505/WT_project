@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: ai-fitness-assistant
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    runtime: python
+    region: oregon
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: PYTHON_VERSION
+        value: 3.10
